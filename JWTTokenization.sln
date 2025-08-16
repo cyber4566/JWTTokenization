@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTTokenization", "JWTTokenization\JWTTokenization.csproj", "{A38F83B1-5C9C-4F3A-9F9B-47F519B9AEF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login", "Login\Login.csproj", "{B27DEAB7-3958-456D-9D1E-926A4BC9E299}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptography", "..\CustomAuth\Cryptography\Cryptography.csproj", "{2A5E4B36-9215-B206-4AE5-D621AAD0F62B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{A38F83B1-5C9C-4F3A-9F9B-47F519B9AEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A38F83B1-5C9C-4F3A-9F9B-47F519B9AEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A38F83B1-5C9C-4F3A-9F9B-47F519B9AEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B27DEAB7-3958-456D-9D1E-926A4BC9E299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B27DEAB7-3958-456D-9D1E-926A4BC9E299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B27DEAB7-3958-456D-9D1E-926A4BC9E299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B27DEAB7-3958-456D-9D1E-926A4BC9E299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A5E4B36-9215-B206-4AE5-D621AAD0F62B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A5E4B36-9215-B206-4AE5-D621AAD0F62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A5E4B36-9215-B206-4AE5-D621AAD0F62B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A5E4B36-9215-B206-4AE5-D621AAD0F62B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

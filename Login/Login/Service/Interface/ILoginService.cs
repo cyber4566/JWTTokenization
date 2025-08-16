@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Login.Login.Service.Interface
+{
+    public interface ILoginService
+    {
+
+        public string getUser(string password, string username);
+
+
+
+    }
+}
