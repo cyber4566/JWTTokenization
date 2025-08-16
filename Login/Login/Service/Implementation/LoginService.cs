@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Cryptography.Orchestration.Interface;
+using Dapper;
 using Login.Login.Service.Interface;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -16,17 +17,20 @@ namespace Login.Login.Service.Implementation
 
         private readonly string CacheUserkey = "User";
         private IConfiguration _config;
+        private ICryptography _crypt;
 
 
-        public LoginService(IConfiguration config) { 
+        public LoginService(IConfiguration config,ICryptography crypt) { 
         
              _config = config;
-        
+             _crypt = crypt;
         }
         public string getUser(string password, string username)
         {
             MemoryCache cache = MemoryCache.Default;
             string User = string.Empty;
+
+            password = _crypt.Encrypt(password);
 
             if (cache.Contains(CacheUserkey))
             {
@@ -38,15 +42,15 @@ namespace Login.Login.Service.Implementation
             else {
 
 
-                using (SqlConnection con = new SqlConnection(_config.GetConnectionString("Auth"))) {
+                using (SqlConnection con = new SqlConnection(_config.GetConnectionString("ConnectionStringAuthNZ"))) {
 
                     DynamicParameters parameters = new DynamicParameters();
 
                     parameters.Add("@username", username);
                     parameters.Add("@password", password);
 
-                    List<string> user = con.Query<string>("SELECT Username from [AuthNZ].[dbo].[Users] where password =@password and @username=username").ToList();
-                    if (user != null) { 
+                    List<string> user = con.Query<string>("SELECT Username from [AuthNZ].[dbo].[Users] where password =@password and @username=username",parameters).ToList();
+                    if (user.Count != 0) { 
                         User = user[0];
                         AddToCache(cache, CacheUserkey, User, new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.Now.AddHours(1) });
                     }
