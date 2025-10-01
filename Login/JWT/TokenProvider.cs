@@ -36,7 +36,7 @@ namespace Login.JWT
             var tokenDescriptor = new SecurityTokenDescriptor
             {
 
-                Subject = new System.Security.Claims.ClaimsIdentity([new Claim("username", username)]),
+                Subject = new System.Security.Claims.ClaimsIdentity([new Claim("username", username), new Claim(ClaimTypes.Role,"admin")]),
                 Expires = DateTime.Now.AddHours(1),
                 SigningCredentials = credentials
 
@@ -51,7 +51,7 @@ namespace Login.JWT
         }
 
 
-        private string GetSecret() {
+        public string GetSecret() {
 
 
             MemoryCache cache = MemoryCache.Default;

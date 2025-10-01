@@ -15,7 +15,7 @@ namespace Login.Login.Service.Implementation
     public class LoginService : ILoginService
     {
 
-        private readonly string CacheUserkey = "User";
+        private readonly string CacheUserkey = "Users";
         private IConfiguration _config;
         private ICryptography _crypt;
 
@@ -35,8 +35,15 @@ namespace Login.Login.Service.Implementation
             if (cache.Contains(CacheUserkey))
             {
 
-                return (string)cache.Get(CacheUserkey);
+                List<string> users = (List<string>)cache.Get(CacheUserkey);
 
+                if (users.Contains(username))
+                {
+                    return username;
+                }
+                else {
+                    return "";
+                }
 
             }
             else {
@@ -52,7 +59,7 @@ namespace Login.Login.Service.Implementation
                     List<string> user = con.Query<string>("SELECT Username from [AuthNZ].[dbo].[Users] where password =@password and @username=username",parameters).ToList();
                     if (user.Count != 0) { 
                         User = user[0];
-                        AddToCache(cache, CacheUserkey, User, new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.Now.AddHours(1) });
+                        AddToCache(cache, CacheUserkey, user, new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.Now.AddHours(1) });
                     }
                 
                 }
@@ -64,7 +71,7 @@ namespace Login.Login.Service.Implementation
         }
 
 
-        private void AddToCache(MemoryCache cache,string key, string username,CacheItemPolicy duration) {
+        private void AddToCache(MemoryCache cache,string key, List<string> username,CacheItemPolicy duration) {
         
              cache.Add(key, username, duration);
         

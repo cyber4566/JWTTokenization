@@ -1,5 +1,6 @@
 using Login.JWT;
 using Login.Login.Orchestration.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWTTokenization.Controllers
@@ -20,6 +21,7 @@ namespace JWTTokenization.Controllers
 
         [HttpGet]
         [Route("Login")]
+        
         public ActionResult<string> Login(string username, string password) {
 
             if (_login.UserValid(username, password)) {

@@ -17,7 +17,7 @@ namespace JWTTokenization.DI
                builder.Services.AddSingleton<ICryptography,Crypt>();
                builder.Services.AddScoped<ILoginService,LoginService>();
                builder.Services.AddScoped<ILogin,LoginUser>();
-               builder.Services.AddScoped<TokenProvider>();
+               builder.Services.AddSingleton<TokenProvider>();
         
         
         }
